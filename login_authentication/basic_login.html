@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Authentication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        button {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #1d4767;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Authentication</h1>
+        <div id="registerForm">
+            <input type="text" id="registerUsername" placeholder="Username">
+            <input type="password" id="registerPassword" placeholder="Password">
+            <button onclick="register()">Register</button>
+        </div>
+        <div id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button id="myButton" onclick="login()">Login</button>
+           
+        </div>
+        <p class="message" id="errorMessage"></p>
+    </div>
+
+    <script>
+        const registerForm = document.getElementById("registerForm");
+        const loginForm = document.getElementById("loginForm");
+        const errorMessage = document.getElementById("errorMessage");
+
+        function register() {
+            const registerUsername = document.getElementById("registerUsername").value;
+            const registerPassword = document.getElementById("registerPassword").value;
+
+            // Basic validation
+            if (registerUsername === "" || registerPassword === "") {
+                errorMessage.textContent = "Please fill in all fields.";
+                return;
+            }
+
+            // Simulate registration (this is not secure)
+            localStorage.setItem(registerUsername, registerPassword);
+            errorMessage.textContent = "Registration successful. You can now log in.";
+        }
+
+        function login() {
+            const loginUsername = document.getElementById("loginUsername").value;
+            const loginPassword = document.getElementById("loginPassword").value;
+
+            // Basic validation
+            if (loginUsername === "" || loginPassword === "") {
+                errorMessage.textContent = "Please fill in all fields.";
+                return;
+            }
+
+            const storedPassword = localStorage.getItem(loginUsername);
+
+            if (storedPassword === loginPassword) {
+                errorMessage.textContent = "Login successful.";
+            } else {
+                errorMessage.textContent = "Login failed. Please check your credentials.";
+            }
+        }
+
+        document.getElementById("myButton").onclick = function () {
+        location.href = "file:///C:/Users/keerthi/Documents/OASIS/login_authentication/eg.html";
+    };
+    </script>
+</body>
+</html>
